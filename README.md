@@ -1,43 +1,70 @@
-# Odds Script
+# Algo Paris Sportifs
 
-Ce script récupère des cotes (odds) depuis The Odds API et cherche des matchs de football dont les trois issues (victoire à domicile, nul, victoire à l'extérieur) ont des cotes proches d'une valeur cible.
+Ce projet permet d'analyser automatiquement les cotes de paris sportifs (football principalement) en utilisant The Odds API. Il identifie les matchs où les trois issues (victoire domicile, nul, victoire extérieur) ont des cotes proches d'une valeur cible, ce qui peut révéler des opportunités de value bet ou d'arbitrage.
 
-Pré-requis
+## Fonctionnalités principales
 
-- Python 3.8+
+- Récupération automatisée des cotes via The Odds API (v4)
+- Filtrage des matchs selon des critères personnalisables (cote cible, tolérance)
+- Export des résultats filtrés au format CSV
+- Analyse et visualisation des résultats dans un notebook Jupyter (`pari-sportif.ipynb`)
 
-Installation
+## Prérequis
+
+- Python 3.8 ou supérieur
+- Un compte sur [The Odds API](https://the-odds-api.com/) pour obtenir une clé API
+
+## Installation
 
 1. Créez un environnement virtuel (recommandé) :
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
+	```powershell
+	python -m venv .venv
+	.\.venv\Scripts\Activate.ps1
+	```
 2. Installez les dépendances :
+	```powershell
+	pip install -r requirements.txt
+	```
 
-```powershell
-pip install -r requirements.txt
+## Configuration
+
+Créez un fichier `.env` à la racine du projet avec votre clé API :
+
+```env
+ODDS_API_KEY=VOTRE_CLE_API_ICI
 ```
 
-Configuration
+## Utilisation
 
-Créez un fichier `.env` à la racine du projet contenant :
+Ouvrez le notebook Jupyter `pari-sportif.ipynb` et exécutez les cellules pour :
+- Charger la clé API depuis `.env`
+- Récupérer et filtrer les cotes selon vos paramètres (`TARGET`, `TOL`, etc.)
+- Exporter les résultats dans `data/data-paris-sportifs.csv`
+- Analyser les bookmakers français ou autres critères
 
-```
-THE_ODDS_API_KEY=votre_cle_api
-```
+## Personnalisation
 
-Utilisation
+Dans le notebook, vous pouvez modifier :
+- `SPORT_KEYS` : liste des sports à analyser (ex : `['soccer_epl']`)
+- `TARGET` : valeur cible des cotes (ex : 3.0)
+- `TOL` : tolérance autour de la cible (ex : 0.6)
+- `REGION` : région des bookmakers (ex : 'eu')
 
-```powershell
-python "./odds_script.py"
-```
+## Remarques
 
-Options utiles (à modifier dans le script) :
-- `target` : valeur cible des cotes (ex. 3.0)
-- `tol` : tolérance autour de la cible
+- Le notebook utilise `python-dotenv` pour charger la variable d'environnement `ODDS_API_KEY` depuis le fichier `.env`.
+- Si vous obtenez des erreurs réseau, vérifiez votre clé API et votre connexion internet.
+
+## Structure du projet
+
+- `pari-sportif.ipynb` : notebook principal d'analyse
+- `requirements.txt` : dépendances Python
+- `data/` : dossiers de données et exports CSV
+- `.env` : fichier contenant la clé API (à ne pas partager)
+
+## Licence
+
+Projet à but éducatif, non destiné à encourager le jeu d'argent. Utilisez avec responsabilité.
 - `region` : région des bookmakers (ex. 'eu')
 - `max_events_per_sport` : limite d'événements par championnat pour économiser le quota
 
