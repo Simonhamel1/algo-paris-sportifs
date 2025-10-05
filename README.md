@@ -16,7 +16,7 @@ Ce projet permet d'analyser automatiquement les cotes de paris sportifs (footbal
 
 ## Installation
 
-1. Créez un environnement virtuel (recommandé) :
+1. Créez un environnement virtuel (recommandé) pas obligatoire :
 	```powershell
 	python -m venv .venv
 	.\.venv\Scripts\Activate.ps1
@@ -28,7 +28,7 @@ Ce projet permet d'analyser automatiquement les cotes de paris sportifs (footbal
 
 ## Configuration
 
-Créez un fichier `.env` à la racine du projet avec votre clé API :
+Completer le fichier `.env` à la racine du projet avec votre clé API :
 
 ```env
 ODDS_API_KEY=VOTRE_CLE_API_ICI
